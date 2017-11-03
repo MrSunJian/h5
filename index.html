@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,hieght=device-height,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
+    <title>开通芝麻分借款，5分钟到账！</title>
+    <style>
+        ul,ol,dl,dd,h1,h2,h3,h4,h5,h6,p,input,button {
+            margin:0;
+            padding:0;
+        }
+        body{
+            font-family:YouYuan,Apple LiGothic Medium, Helvetica, 'Hiragino Sans GB', 'Microsoft Yahei',  Arial, sans-serif;
+            background: url("{$Think.const.__PUBLIC_PATH}/Img/h5.jpg");
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+        }
+        .Section{
+            position: relative;
+        }
+        .telNum{
+            width: 90%;
+            height:50px;
+            border:none;
+            border-radius: 5px;
+            line-height: 50px;
+            margin:20px 5% ;
+            color: #b78b12;
+            font-size: 24px;
+        }
+        .confirm{
+            width:45%;
+            margin-left: 5%;
+            height:50px;
+            border:none;
+            border-radius: 5px;
+            line-height: 50px;
+            color: #b78b12;
+            font-size: 24px;
+        }
+        .btn{
+            margin-left: 10%;
+            width:35%;
+            height:50px;
+            border: none;
+            line-height: 50px;
+            border-radius: 10px;
+            background-color: #FFE8BB;
+            color: #FF8F46;
+            font-size: 16px;
+            /*background: url("normal.png") no-repeat;*/
+            /*background-size: contain;*/
+        }
+        .Return{
+            display: flex;
+            align-items: center;
+        }
+        input::-webkit-input-placeholder{
+            color: #b78b12;
+            padding-left: 20px;
+        }
+        .shenqing{
+            background: url("{$Think.const.__PUBLIC_PATH}/Img/normal2.png") no-repeat;
+            background-size: cover;
+            width:90%;
+            height:60px;
+            line-height: 60px;
+            border-radius: 10px;
+            border: none;
+            margin: 20px 5%;
+        }
+        .copyright{
+            margin-top: 20px;
+            color: #fff;
+            text-align: center;
+            font-size: 12px;
+        }
+        .xieyi{
+            position: absolute;
+            bottom:28px;
+            left:5%;
+            color: #000;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+	<form action="{:U('Index/identcodecheck')}" method="post">
+<section class="Section">
+    <section style="height: 275px;position: absolute;bottom: 0; width: 100%;" >
+        <input type="tel" placeholder="请输入您的手机号码" class="telNum" id="phone" name='uname'>
+        <div class="Return">
+            <input type="number" class="confirm" placeholder="验证码" name='idcode'>
+            
+            <button class="btn" onclick="getCode(this)" id="J_getCode">获取验证码</button>
+            <button class="reset-code btn" id="J_resetCode" style="display:none;"><span id="J_second">60</span>秒后重发</button>
+        </div>
+        <div style="width: 100%;"><button class="shenqing" type="submit">注册</button></div>
+        <span class="xieyi"><input type="checkbox" checked>已阅读 <a href="xieyi.html">花不尽用户注册协议</a> </span>
+        <div class="copyright">版权所有：北京心向优势信息技术有限公司</div>
+    </section>
+</section>
+</form>
+
+<script src="{$Think.const.__PUBLIC_PATH}/Js/jquery-1.8.3.min.js"></script>
+<script>
+    var height=$(window).height(),width=$(window).width();
+    console.log($("body").height())
+
+    $(".Section").css({"height":height,"width":width})
+
+    var isPhone = 1;
+    function getCode(e){
+        checkPhone(); //验证手机号码
+        if(isPhone){
+        	idcode();
+
+           // resetCode(); //倒计时
+           
+        }else{
+            $('#phone').focus();
+        }
+        return false;
+
+    }
+    
+    //请求短信验证码
+    function idcode(){
+    	var uname=$('#phone').val();
+    	$.post("http://localhost/flowindex/home/index/identcodesend",{'uname':uname},function(data){
+    		alert(data);
+    	});
+        // $.ajax({
+        //     type: "post",
+        //     url: "http://localhost/flowindex/home/index/identcodesend",
+        //     data:{'uname':uname}
+        //     success: function (data) {
+                         
+        //     }
+        // })
+    }
+    
+    //验证手机号码
+    function checkPhone(){
+        var phone = $('#phone').val();
+        var pattern =new RegExp("^(13|14|15|17|18)[0-9]{9}$");
+        isPhone = 1;
+        if(phone == '') {
+            alert('请输入手机号码');
+            isPhone = 0;
+            return;
+        }
+        if(!pattern.test(phone)){
+            alert('请输入正确的手机号码');
+            isPhone = 0;
+            return;
+        }
+    }
+    //倒计时
+    function resetCode(){
+        $('#J_getCode').hide();
+        $('#J_second').html('60');
+        $('#J_resetCode').show();
+        var second = 60;
+        var timer = null;
+        timer = setInterval(function(){
+            second -= 1;
+            if(second >0 ){
+                $('#J_second').html(second);
+            }else{
+                clearInterval(timer);
+                $('#J_getCode').show();
+                $('#J_resetCode').hide();
+            }
+        },1000);
+    }
+</script>
+</body>
+</html>

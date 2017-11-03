@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,hieght=device-height,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
+    <title>完善信息</title>
+    <style>
+        ul,ol,dl,dd,h1,h2,h3,h4,h5,h6,p,input,button {
+            margin:0;
+            padding:0;
+        }
+        a{
+            text-decoration: none;
+        }
+        body{
+            font-family:YouYuan,Apple LiGothic Medium, Helvetica, 'Hiragino Sans GB', 'Microsoft Yahei',  Arial, sans-serif;
+            background: url("info.jpg");
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+        }
+        .Section{
+            position: relative;
+            /*height:800px;*/
+        }
+        input,select{
+            border:none;
+        }
+
+        .row1{
+            display: inline-block;
+            width:25%;
+            height: 20px;
+            color: #b78b12;
+            box-sizing: border-box;
+            border-right: 1px solid #b78b12;
+            margin-left: 15px;
+        }
+        .row2{
+            display: inline-block;
+            width:50px;
+            line-height: 30px;
+            height:30px;
+            text-align: center;
+            box-sizing: border-box;
+            margin-left: 5px;
+        }
+        .row2 input{
+            height:100%;
+        }
+        .col{
+            box-sizing: border-box;
+            width:90%;
+            height:40px;
+            border-radius: 5px;
+            margin:0 auto 10px auto;
+            background-color: #ffffff;
+            display: flex;
+            align-items: center;
+        }
+        button{
+            display: block;
+            width:90%;
+            height:40px;
+            margin: 20px auto 20px auto;
+            color: #fff;
+            background-color: #000;
+            border-radius: 5px;
+            font-size: 18px;
+            border:none;
+        }
+    </style>
+</head>
+<body>
+
+<section class="Section">
+    <section style="height: 470px;margin-top: 250px; width: 100%;">
+        <div class="col">
+            <div class="row1">姓名</div>
+            <div class="row2">
+                <input type="text"  placeholder="真实姓名">
+            </div>
+        </div>
+        <div class="col">
+            <div class="row1">年龄</div>
+            <div class="row2"><input type="number" placeholder="多少周岁"></div>
+        </div>
+        <div class="col">
+            <div class="row1">芝麻分</div>
+            <div class="row2"><input type="number" step="1"  placeholder="请填写支付宝芝麻分数字"></div>
+        </div>
+        <div class="col">
+            <div class="row1">微信</div>
+            <div class="row2">
+                <input  placeholder="请输入微信号">
+            </div>
+        </div>
+        <div class="col">
+            <div class="row1">QQ</div>
+            <div class="row2">
+                <input type="number" placeholder="请输入QQ号">
+            </div>
+        </div>
+        <div class="col" >
+            <div class="row1">地区</div>
+            <div class="row2"><input type="text" placeholder="例如：广东深圳"></div>
+        </div>
+        <div class="col">
+            <div class="row1">借款金额</div>
+            <div class="row2">
+                <input type="number" placeholder="请输入借款金额">
+            </div>
+        </div>
+        <a href="success.html"><button>立即提交</button></a>
+    </section>
+</section>
+
+
+
+
+
+<script src="jquery-1.8.3.min.js"></script>
+<script>
+    var height=$(window).height(),width=$(window).width();
+    console.log($("body").height())
+
+    $(".Section").css("width",width)
+</script>
+</body>
+</html>
